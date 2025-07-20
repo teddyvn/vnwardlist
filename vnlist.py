@@ -99,11 +99,7 @@ def get_ward_list(name):
 
 provinceList = get_provinces()
 template_list = get_template_links()
-for template in template_list:
-    for province in provinceList:
-        if province in template:
-            provinceList.remove(province)
-            break
+provinceList = list(filter(lambda p: not any(p in template for template in template_list), provinceList))
 for template in template_list:
     get_ward_list(template)
 for province in provinceList:
